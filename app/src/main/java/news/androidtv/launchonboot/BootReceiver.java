@@ -19,7 +19,6 @@ public class BootReceiver extends BroadcastReceiver {
     private static final String TAG = BootReceiver.class.getSimpleName();
     private static final boolean DEBUG = true;
 
-    private boolean mScreenOnListener = false;
     private Context mContext;
 
     @Override
@@ -29,6 +28,7 @@ public class BootReceiver extends BroadcastReceiver {
                 intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
             startForegroundService();
         }
+        Toast.makeText(context,"Device Rebooted ",Toast.LENGTH_LONG).show();
         processEvent(context, intent);
     }
 
