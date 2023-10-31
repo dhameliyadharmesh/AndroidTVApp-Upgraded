@@ -104,5 +104,14 @@
             android:layout_below="@id/text_package_name"
             android:layout_marginTop="64dp"
             android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:text="Open WebView"
+            android:id="@+id/button_webview"
+            android:background="@color/colorPrimaryDark"
+            android:layout_below="@id/button_test"
+            android:layout_marginTop="64dp"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 </RelativeLayout>
