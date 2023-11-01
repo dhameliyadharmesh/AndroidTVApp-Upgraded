@@ -1,5 +1,7 @@
 package news.androidtv.launchonboot;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -7,6 +9,7 @@ import android.content.pm.ResolveInfo;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -87,6 +90,13 @@ public class MainActivity extends AppCompatActivity {
                                 SettingsManagerConstants.ON_WAKEUP, isChecked);
                         updateSelectionView();
                         if (isChecked) {
+                            if (android.os.Build.VERSION.SDK_INT == android.os.Build.VERSION_CODES.Q) {
+                                if (!Settings.canDrawOverlays(getApplicationContext())) {
+                                    startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION));
+                                }else{
+                                    startForegroundService();
+                                }
+                            }
                             startForegroundService();
                         }
                     }

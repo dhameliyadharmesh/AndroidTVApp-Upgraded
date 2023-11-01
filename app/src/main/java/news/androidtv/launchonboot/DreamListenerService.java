@@ -13,8 +13,10 @@ import android.graphics.BitmapFactory;
 import android.os.IBinder;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by Nick on 5/11/2017.
@@ -87,14 +89,16 @@ public class DreamListenerService extends Service {
 
         // Register listeners.
         IntentFilter filter = new IntentFilter(Intent.ACTION_DREAMING_STOPPED);
-        registerReceiver(dreamHandler, filter);
+//        registerReceiver(dreamHandler, filter);
+        LocalBroadcastManager.getInstance(this).registerReceiver(dreamHandler,filter);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         // Unregister listener.
-        unregisterReceiver(dreamHandler);
+//        unregisterReceiver(dreamHandler);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(dreamHandler);
     }
 
     @Override
