@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                                 SettingsManagerConstants.ON_WAKEUP, isChecked);
                         updateSelectionView();
                         if (isChecked) {
-                            if (android.os.Build.VERSION.SDK_INT == android.os.Build.VERSION_CODES.Q) {
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
                                 if (!Settings.canDrawOverlays(getApplicationContext())) {
                                     startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION));
                                 }else{
