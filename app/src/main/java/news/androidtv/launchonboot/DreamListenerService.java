@@ -1,6 +1,8 @@
 package news.androidtv.launchonboot;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -10,6 +12,8 @@ import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.os.IBinder;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+
 import android.util.Log;
 
 /**
@@ -44,17 +48,41 @@ public class DreamListenerService extends Service {
         Intent notificationIntent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
 
-        Notification notification = new Notification.Builder(this)
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, getString(R.string.default_notification_channel_id))
                 .setContentTitle(getText(R.string.app_name))
                 .setContentText(getText(R.string.notification_text))
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.banner))
                 .setContentIntent(pendingIntent)
                 .setCategory(Notification.CATEGORY_RECOMMENDATION)
-                .setPriority(Notification.PRIORITY_MIN)
-                .build();
+                .setPriority(Notification.PRIORITY_MIN);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    getString(R.string.default_notification_channel_id),
+                    getString(R.string.app_name),
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            notificationManager.createNotificationChannel(channel);
+        }
+        startForeground(ONGOING_NOTIFICATION_ID, notificationBuilder.build());
 
-        startForeground(ONGOING_NOTIFICATION_ID, notification);
+//        val notificationBuilder: NotificationCompat.Builder =
+//                NotificationCompat.Builder(this, getString(R.string.default_notification_channel_id)).setContentTitle(title)
+//                        .setContentText(body).setAutoCancel(true)
+//                        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)) //.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.win))
+//                        .setContentIntent(pendingIntent)
+//                        .setLargeIcon(BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher))
+//                        .setDefaults(Notification.DEFAULT_VIBRATE)
+//                        .setSmallIcon(R.drawable.ic_notification)
+//        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+//        val channel = NotificationChannel(
+//                getString(R.string.app_name),
+//                getString(R.string.app_name),
+//                NotificationManager.IMPORTANCE_DEFAULT
+//        )
+//        notificationManager.createNotificationChannel(channel)
+//        notificationManager.notify(0, notificationBuilder.build())
         Log.d(TAG, "Deploy notification");
 
         // Register listeners.
