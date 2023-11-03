@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingStart="32dp"
     android:paddingEnd="0dp"
-    tools:context="news.androidtv.launchonboot.MainActivity">
+    tools:context="masjid.tv.app.MainActivity">
 
     <RelativeLayout
         android:layout_width="480dp"

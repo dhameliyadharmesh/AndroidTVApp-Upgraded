@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="news.androidtv.launchonboot" >
+    package="masjid.tv.app" >
 
     <!-- To handle boot completes -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -32,7 +32,7 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
 
-        <activity android:name=".MainActivity"
+        <activity android:name="masjid.tv.app.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,14 +44,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".WebViewActivity"
+        <activity android:name="masjid.tv.app.WebViewActivity"
             android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".OnboardingActivity"
+        <activity android:name="masjid.tv.app.OnboardingActivity"
             android:enabled="true"
             android:exported="true"
             android:theme="@style/Onboard" />
@@ -59,7 +59,7 @@
         <receiver
             android:enabled="true"
             android:exported="false"
-            android:name=".BootReceiver"
+            android:name="masjid.tv.app.BootReceiver"
             android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
@@ -71,7 +71,7 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".DreamListenerService"
+        <service android:name="masjid.tv.app.DreamListenerService"
             android:enabled="true"
             android:foregroundServiceType="specialUse"
             android:exported="true" >

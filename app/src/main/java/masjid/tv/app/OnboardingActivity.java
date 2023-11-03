@@ -1,13 +1,12 @@
-package news.androidtv.launchonboot;
+package masjid.tv.app;
 
 import android.app.Activity;
 import android.os.Bundle;
 
 import com.felkertech.settingsmanager.SettingsManager;
 
-/**
- * Created by Nick on 4/22/2017.
- */
+
+
 
 public class OnboardingActivity extends Activity {
     /**

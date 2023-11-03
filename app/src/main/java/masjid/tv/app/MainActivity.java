@@ -1,4 +1,4 @@
-package news.androidtv.launchonboot;
+package masjid.tv.app;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,7 +7,6 @@ import android.content.pm.ResolveInfo;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -17,7 +16,6 @@ import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.felkertech.settingsmanager.SettingsManager;
@@ -25,7 +23,7 @@ import com.felkertech.settingsmanager.SettingsManager;
 import java.util.List;
 
 import static android.view.View.GONE;
-import static news.androidtv.launchonboot.SettingsManagerConstants.ONBOARDING;
+import static masjid.tv.app.SettingsManagerConstants.ONBOARDING;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();

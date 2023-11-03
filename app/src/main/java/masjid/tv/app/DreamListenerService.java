@@ -1,4 +1,4 @@
-package news.androidtv.launchonboot;
+package masjid.tv.app;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -17,11 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-/**
- * Created by Nick on 5/11/2017.
- *
- * A foreground service that listens for Screensaver events and responds.
- */
+
+
 public class DreamListenerService extends Service {
     private static final String TAG = DreamListenerService.class.getSimpleName();
 

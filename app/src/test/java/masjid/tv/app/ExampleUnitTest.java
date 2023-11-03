@@ -1,4 +1,4 @@
-package news.androidtv.launchonboot;
+package masjid.tv.app;
 
 import org.junit.Test;
 

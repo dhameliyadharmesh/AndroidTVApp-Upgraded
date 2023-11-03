@@ -1,8 +1,10 @@
-package news.androidtv.launchonboot;
+package masjid.tv.app;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AlertDialog;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+
 
 public class WebViewActivity extends AppCompatActivity {
 

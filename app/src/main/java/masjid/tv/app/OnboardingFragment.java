@@ -1,4 +1,4 @@
-package news.androidtv.launchonboot;
+package masjid.tv.app;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -15,9 +15,8 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-/**
- * Created by Nick on 4/22/2017.
- */
+
+
 
 public class OnboardingFragment extends androidx.leanback.app.OnboardingFragment {
     private static final int[] pageTitles = {

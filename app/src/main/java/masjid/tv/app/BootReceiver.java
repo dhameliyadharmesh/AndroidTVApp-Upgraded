@@ -1,4 +1,4 @@
-package news.androidtv.launchonboot;
+package masjid.tv.app;
 
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -10,10 +10,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.felkertech.settingsmanager.SettingsManager;
-
-/**
- * Created by Nick on 10/23/2016.
- */
 
 public class BootReceiver extends BroadcastReceiver {
     private static final String TAG = BootReceiver.class.getSimpleName();

@@ -1,4 +1,4 @@
-package news.androidtv.launchonboot;
+package masjid.tv.app;
 
 /**
  * Created by Nick on 10/23/2016.
