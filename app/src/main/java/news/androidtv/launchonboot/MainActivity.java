@@ -1,13 +1,15 @@
 package news.androidtv.launchonboot;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ResolveInfo;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -30,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
     private static final boolean DEBUG = true;
 
     private SettingsManager mSettingsManager;
-    private Switch mSwitchEnabled;
-    private Switch mSwitchLiveChannels;
-    private Switch mSwitchWakeup;
+    private SwitchCompat mSwitchEnabled;
+    private SwitchCompat mSwitchLiveChannels;
+    private SwitchCompat mSwitchWakeup;
     private Button mButtonSelectApp;
     private TextView mPackageName;
 
@@ -49,9 +51,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mSwitchLiveChannels = ((Switch) findViewById(R.id.switch_live_channels));
-        mSwitchEnabled = ((Switch) findViewById(R.id.switch_enable));
-        mSwitchWakeup = ((Switch) findViewById(R.id.switch_wakeup));
+        mSwitchLiveChannels = ((SwitchCompat) findViewById(R.id.switch_live_channels));
+        mSwitchEnabled = ((SwitchCompat) findViewById(R.id.switch_enable));
+        mSwitchWakeup = ((SwitchCompat) findViewById(R.id.switch_wakeup));
         mButtonSelectApp = (Button) findViewById(R.id.button_select_app);
         mPackageName = ((TextView) findViewById(R.id.text_package_name));
 
@@ -113,13 +115,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.button_webview).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, WebViewActivity.class);
-                startActivity(i);
-            }
-        });
+//        findViewById(R.id.button_webview).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(MainActivity.this, WebViewActivity.class);
+//                startActivity(i);
+//            }
+//        });
 
         mButtonSelectApp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,7 +214,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void startForegroundService() {
         // Ideally only starts once :thinking-emoji:
-        Intent i = new Intent(MainActivity.this, DreamListenerService.class);
-        startService(i);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Intent i = new Intent(MainActivity.this, DreamListenerService.class);
+            startForegroundService(i);
+        } else {
+            Intent i = new Intent(MainActivity.this, DreamListenerService.class);
+            startService(i);
+        }
     }
 }

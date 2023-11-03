@@ -91,7 +91,13 @@ public class BootReceiver extends BroadcastReceiver {
     }
 
     private void startForegroundService() {
-        Intent i = new Intent(mContext, DreamListenerService.class);
-        mContext.startService(i);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Intent i = new Intent(mContext, DreamListenerService.class);
+            mContext.startForegroundService(i);
+        } else {
+            Intent i = new Intent(mContext, DreamListenerService.class);
+            mContext.startService(i);
+        }
+
     }
 }

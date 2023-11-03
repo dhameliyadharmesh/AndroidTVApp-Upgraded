@@ -17,6 +17,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def project = "MasjidTVApp_"
+            def date = new Date();
+            def formattedDate = date.format('MMM_dd')
+
+            def newApkName = project + formattedDate + "_T1.apk"
+
+            outputFileName = new File(newApkName)
+        }
+    }
 }
 
 dependencies {

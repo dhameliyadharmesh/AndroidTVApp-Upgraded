@@ -9,14 +9,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ServiceInfo;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.IBinder;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
-import android.util.Log;
-import android.widget.Toast;
 
 /**
  * Created by Nick on 5/11/2017.
@@ -28,11 +27,10 @@ public class DreamListenerService extends Service {
 
     private static final int ONGOING_NOTIFICATION_ID = 1;
 
-    private BroadcastReceiver dreamHandler = new BroadcastReceiver() {
+    private final BroadcastReceiver dreamHandler = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             // Redirect intent.
-            Log.d(TAG, "Received service event: " + intent.getAction());
             BootReceiver.processEvent(context, intent);
         }
     };
@@ -59,7 +57,7 @@ public class DreamListenerService extends Service {
                 .setCategory(Notification.CATEGORY_RECOMMENDATION)
                 .setPriority(Notification.PRIORITY_MIN);
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     getString(R.string.default_notification_channel_id),
                     getString(R.string.app_name),
@@ -67,29 +65,13 @@ public class DreamListenerService extends Service {
             );
             notificationManager.createNotificationChannel(channel);
         }
-        startForeground(ONGOING_NOTIFICATION_ID, notificationBuilder.build());
-
-//        val notificationBuilder: NotificationCompat.Builder =
-//                NotificationCompat.Builder(this, getString(R.string.default_notification_channel_id)).setContentTitle(title)
-//                        .setContentText(body).setAutoCancel(true)
-//                        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)) //.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.win))
-//                        .setContentIntent(pendingIntent)
-//                        .setLargeIcon(BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher))
-//                        .setDefaults(Notification.DEFAULT_VIBRATE)
-//                        .setSmallIcon(R.drawable.ic_notification)
-//        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-//        val channel = NotificationChannel(
-//                getString(R.string.app_name),
-//                getString(R.string.app_name),
-//                NotificationManager.IMPORTANCE_DEFAULT
-//        )
-//        notificationManager.createNotificationChannel(channel)
-//        notificationManager.notify(0, notificationBuilder.build())
-        Log.d(TAG, "Deploy notification");
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            startForeground(ONGOING_NOTIFICATION_ID, notificationBuilder.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
+        }else{
+            startForeground(ONGOING_NOTIFICATION_ID, notificationBuilder.build());
+        }
         // Register listeners.
         IntentFilter filter = new IntentFilter(Intent.ACTION_DREAMING_STOPPED);
-//        registerReceiver(dreamHandler, filter);
         LocalBroadcastManager.getInstance(this).registerReceiver(dreamHandler,filter);
     }
 
@@ -97,7 +79,6 @@ public class DreamListenerService extends Service {
     public void onDestroy() {
         super.onDestroy();
         // Unregister listener.
-//        unregisterReceiver(dreamHandler);
         LocalBroadcastManager.getInstance(this).unregisterReceiver(dreamHandler);
     }
 
