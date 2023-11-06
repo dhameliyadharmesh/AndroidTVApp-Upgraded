@@ -3,6 +3,11 @@
     <color name="colorPrimary">#009688</color>
     <color name="colorPrimaryDark">#4CAF50</color>
     <color name="colorAccent">#03A9F4</color>
-    <color name="dark">#333</color>
+    <color name="dark">#FFF</color>
     <color name="darker">#171717</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey">#939292</color>
+    <color name="dark_grey">#807E7E</color>
+    <color name="swithcTrackActive">#50009688</color>
 </resources>

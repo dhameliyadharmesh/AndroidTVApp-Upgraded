@@ -28,6 +28,10 @@ android {
             outputFileName = new File(newApkName)
         }
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -36,6 +40,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0-alpha13'
+    implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.leanback:leanback:1.0.0'
 
     implementation 'com.github.fleker:settingsmanager:1.3.5'

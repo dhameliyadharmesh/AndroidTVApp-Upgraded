@@ -15,8 +15,8 @@
     <string name="default_notification_channel_id">MasjidScreenApp</string>
     <string name="banner_image">Banner Image</string>
     <string name="enabled">Enabled</string>
-    <string name="launch_tv_app_on_boot">Launch Tv App on Boot?</string>
-    <string name="select_app">Select app</string>
+    <string name="launch_tv_app_on_boot">Launch Masjid App on Boot?</string>
+    <string name="select_app">Choose app</string>
     <string name="com_felker">com.felker</string>
     <string name="test">Test</string>
 </resources>

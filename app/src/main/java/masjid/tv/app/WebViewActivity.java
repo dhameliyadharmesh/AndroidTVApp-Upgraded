@@ -1,10 +1,7 @@
 package masjid.tv.app;
 
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-
 
 public class WebViewActivity extends AppCompatActivity {
 

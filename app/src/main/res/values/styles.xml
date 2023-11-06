@@ -8,10 +8,22 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@android:color/white</item>
+        <!-- Active thumb color & Active track color(30% transparency) -->
     </style>
 
     <style name="Onboard" parent="Theme.Leanback.Onboarding">
         <item name="defaultBrandColor">@color/colorPrimary</item>
         <item name="defaultBrandColorDark">@color/colorPrimaryDark</item>
     </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="switchTextStyle" parent="">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
 </resources>

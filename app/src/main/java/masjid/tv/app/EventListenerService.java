@@ -17,18 +17,14 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-
-
-public class DreamListenerService extends Service {
-    private static final String TAG = DreamListenerService.class.getSimpleName();
-
+public class EventListenerService extends Service {
     private static final int ONGOING_NOTIFICATION_ID = 1;
 
-    private final BroadcastReceiver dreamHandler = new BroadcastReceiver() {
+    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             // Redirect intent.
-            BootReceiver.processEvent(context, intent);
+            AppReceiver.processEvent(context, intent);
         }
     };
 
@@ -41,10 +37,8 @@ public class DreamListenerService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        // Create a foreground service.
-        Intent notificationIntent = new Intent(this, MainActivity.class);
+        Intent notificationIntent = new Intent(this, HomeActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
-
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, getString(R.string.default_notification_channel_id))
                 .setContentTitle(getText(R.string.app_name))
                 .setContentText(getText(R.string.notification_text))
@@ -69,14 +63,13 @@ public class DreamListenerService extends Service {
         }
         // Register listeners.
         IntentFilter filter = new IntentFilter(Intent.ACTION_DREAMING_STOPPED);
-        LocalBroadcastManager.getInstance(this).registerReceiver(dreamHandler,filter);
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver,filter);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        // Unregister listener.
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(dreamHandler);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
     }
 
     @Override

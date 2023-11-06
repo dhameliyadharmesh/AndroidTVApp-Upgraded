@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="masjid.tv.app.HomeActivity">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:visibility="visible"
+        android:paddingTop="32dp"
+        android:paddingBottom="32dp"
+        android:id="@+id/leftPane"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="400dp"
+            android:foregroundGravity="center_horizontal"
+            android:src="@drawable/banner"
+            android:id="@+id/app_banner"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/banner_image" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_below="@id/app_banner"
+            android:textSize="16sp"
+            android:paddingEnd="32dp"
+            android:paddingStart="32dp"
+            android:paddingTop="8dp"
+            android:text="@string/credits"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="match_parent"
+        android:id="@+id/settings"
+        android:paddingEnd="12dp"
+        android:paddingTop="72dp"
+        android:paddingStart="12dp"
+        android:background="@color/white"
+        android:layout_toEndOf="@id/leftPane"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/llEnabled"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:text="@string/enabled"
+                android:layout_weight="1"
+                style="@style/switchTextStyle"
+                android:layout_height="wrap_content" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:id="@+id/switch_enable"
+                android:checked="false"
+                app:thumbTint="@color/newthumb"
+                app:trackTint="@color/switch_track"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llLiveChannels"
+            android:layout_below="@+id/llEnabled"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:text="@string/launch_tv_app_on_boot"
+                android:layout_weight="1"
+                style="@style/switchTextStyle"
+                android:layout_height="wrap_content" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:id="@+id/switch_live_channels"
+                app:thumbTint="@color/newthumb"
+                app:trackTint="@color/switch_track"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llLaunchOnWakeUp"
+            android:layout_below="@+id/llLiveChannels"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:text="@string/msg_wakeup"
+                android:layout_weight="1"
+                style="@style/switchTextStyle"
+                android:layout_height="wrap_content" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:id="@+id/switch_wakeup"
+                app:thumbTint="@color/newthumb"
+                app:trackTint="@color/switch_track"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:id="@+id/button_select_app"
+            android:layout_below="@id/llLaunchOnWakeUp"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/select_app"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/text_package_name"
+            android:text="@string/com_felker"
+            android:layout_marginTop="8dp"
+            style="@style/switchTextStyle"
+            android:layout_below="@id/button_select_app"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</RelativeLayout>
