@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- Replaced at runtime with image to fade out -->
+    <item android:drawable="@color/white" android:id="@+id/background_imageout"/>
+    <!-- Replaced at runtime with image to fade in -->
+    <item android:drawable="@color/white" android:id="@+id/background_imagein"/>
+</layer-list>
